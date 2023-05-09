@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:00:54 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/04 01:47:35 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/09 06:26:32 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ void*	affiche(void)
 int	main(int ac, char **av)
 {
 	
-	if (ac != 5)
-		ft_exit();
-	input_is_valid(av);
+	if (input_is_valid(ac, av) == 1)
+		return (0);
 	
 	// pthread_create(&p1, NULL, affiche, NULL);
 	// // printf("==> %d\n", num);

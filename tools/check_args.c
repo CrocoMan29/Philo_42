@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 01:14:09 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/04 02:08:42 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/09 06:41:01 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,26 @@ int	ft_isempty(char *str)
 	return (0);
 }
 
-void	input_is_valid(char **av)
+int	input_is_valid(int ac, char **av)
 {
-	t_help	arg;
-	int count = 0;
-	
-	arg.i = 0;
-	while(av[++arg.i])
+	size_t	i;
+
+	if (ac < 5 || ac > 6)
 	{
-		if (ft_isempty(av[arg.i]) == 1)
-			ft_exit();
-		if (ft_split(av[arg.i]) == 1)	
-		count++;
+		printf("must be 5 args or 6!!!!!!\n");
+		return (1);
 	}
-	printf("--> %d\n", count);
+	i = 1;
+	while (av[i])
+	{
+		if (!is_num(av[i]) || !ft_atoi(av[i]))
+		{
+			printf ("hello al ikhwan\n");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }
 
 void	ft_exit(void)
