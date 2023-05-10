@@ -6,11 +6,11 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 02:05:08 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/09 06:54:08 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/10 01:52:09 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "philo.h"
 
 
 int	ft_isdigit(int c)

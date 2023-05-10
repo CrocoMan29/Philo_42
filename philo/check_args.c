@@ -6,32 +6,23 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 01:14:09 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/09 06:41:01 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/10 04:57:49 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../philo.h"
+#include"philo.h"
 
-int	ft_isspace(char *str)
+void	assign_arg(t_table *arg, char **av, int ac)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] == ' ')
-		i++;
-	if (str[i] == '\0')
-		return (1);
-	return (0);
-}
-
-int	ft_isempty(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (ft_isspace(str) == 1)
-		return (1);
-	return (0);
+	arg->philosopher = malloc(sizeof(t_philo));
+	if (!arg->philosopher)
+		return ;
+	arg->philosopher->nb_of_philo = ft_atoi(av[1]);
+	arg->philosopher->time_of_die = ft_atoi(av[2]);
+	arg->philosopher->time_to_eat = ft_atoi(av[3]);
+	arg->philosopher->time_to_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		arg->philosopher->nb_of_time_must_eat = ft_atoi(av[5]);
 }
 
 int	input_is_valid(int ac, char **av)
@@ -48,7 +39,7 @@ int	input_is_valid(int ac, char **av)
 	{
 		if (!is_num(av[i]) || !ft_atoi(av[i]))
 		{
-			printf ("hello al ikhwan\n");
+			printf ("error\n");
 			return (1);
 		}
 		i++;

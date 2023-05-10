@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:01:22 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/09 06:53:40 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/10 04:54:53 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,18 @@
 
 typedef struct s_philo
 {
+	int		nb_of_philo;
 	int		time_of_die;
 	int		time_to_eat;
 	int		time_to_sleep;
+	int		nb_of_time_must_eat;
+	
 }			t_philo;
 
 
 typedef struct s_table
 {
-	t_philo		philosopher;
+	t_philo		*philosopher;
 	int			forks;
 }				t_table;
 

@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:00:54 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/09 06:26:32 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/10 04:57:01 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,15 @@ void*	affiche(void)
 
 int	main(int ac, char **av)
 {
-	
-	if (input_is_valid(ac, av) == 1)
+	t_table		*arg;
+	if (input_is_valid(ac, av))
+	{
 		return (0);
-	
+	}
+	assign_arg(arg, av, ac);
+	// system("leaks philo");
+	// while (1);
+	// system("leaks philo");
 	// pthread_create(&p1, NULL, affiche, NULL);
 	// // printf("==> %d\n", num);
 	// pthread_create(&p2, NULL, affiche, NULL);
