@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 02:05:08 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/10 01:52:09 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/14 23:41:45 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,29 @@ int		is_num(char *str)
 		str++;
 	}
 	return (1);
+}
+
+int	ft_atol(const char *str)
+{
+	int	i;
+	int	sign;
+	long int	final;
+	
+	i = 0;
+	sign = 1;
+	final = 0;
+	while ((str[i] >= 9 && str[i] <= 12) || str[i] == 32)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	while (ft_isdigit(str[i]))
+	{
+		final = final * 10 + str[i] - '0';
+		i++;
+	}
+	if ((final * sign) < 0)
+		return (-1);
+	return (final);
 }

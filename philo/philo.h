@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:01:22 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/14 02:03:07 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/14 23:44:12 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<pthread.h>
+#include<limits.h>
 
 #define BLUE "\e[1;36m"
 # define GREEN "\e[0;92m"
 # define RED "\e[0;31m"
 # define RESET "\e[0m"
+
 
 typedef enum s_state
 {
@@ -48,6 +50,12 @@ typedef struct s_data
 	
 }			t_data;
 
+typedef struct s_fork
+{
+	int				id_fork;
+	int				gradedby;
+	pthread_mutex_t	m_fork;
+}					t_fork;
 
 typedef struct s_philo
 {
@@ -64,12 +72,6 @@ typedef struct s_philo
 	
 }				t_philo;
 
-typedef struct s_fork
-{
-	int				id_fork;
-	int				gradedby;
-	pthread_mutex_t	m_fork;
-}					t_fork;
 
 typedef struct s_all
 {
@@ -77,13 +79,14 @@ typedef struct s_all
 	t_philo		*a_philo;
 	t_fork		*a_fork;
 	pthread_t	*m_th_id;
-};
+}				t_all;
 
 
 //*---------------Tools---------------*//
 void	ft_exit(void);
 int		input_is_valid(int ac, char **av);
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
+int		ft_atol(const char *str);
 int		is_num(char *str);
 int	ft_isdigit(int c);
 

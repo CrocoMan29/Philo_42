@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:00:54 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/14 02:09:23 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/14 22:45:50 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int ac, char **av)
 	// 	return (1);
 	// 	printf ("====> %d\n", *n1);
 	t_philo		*data;
+	
 	
 	// system("leaks philo");
 	// while (1);
