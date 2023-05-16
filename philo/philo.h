@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:01:22 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/14 23:44:12 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/16 06:48:11 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include<stdlib.h>
 #include<pthread.h>
 #include<limits.h>
+#include<string.h>
 
 #define BLUE "\e[1;36m"
 # define GREEN "\e[0;92m"

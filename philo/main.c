@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:00:54 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/16 00:39:03 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/16 06:10:56 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int ac, char **av)
 	if (input_is_valid(ac, av))
 		return (0);
 	if (set_data(&all, ac, av))
+		return (0);
 	
 	// system("leaks philo");
 	// while (1);
