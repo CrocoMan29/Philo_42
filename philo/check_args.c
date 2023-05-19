@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 01:14:09 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/16 07:08:08 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/19 09:21:56 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	assign_philo(t_all *all)
 	{
 		memset(&all->a_philo, 0, sizeof(t_philo));
 		all->a_philo[i].data = all->a_data;
+	printf ("hello\n");
 		all->a_philo[i].fork = all->a_fork;
 		all->a_philo[i].id_thread = (pthread_t *)malloc(sizeof(pthread_t));
 		if (!all->a_philo[i].id_thread)
@@ -114,20 +115,20 @@ int	set_data(t_all *all, int ac, char **av)
 
 int	input_is_valid(int ac, char **av)
 {
-	if (ac != 5 || ac != 6)
+	if (ac != 5 && ac != 6)
 	{
 		printf("must be 5 args or 6!!!!!!\n");
 		return (1);
 	}
-	if (ft_atol(av[1]) <= INT_MAX)
+	if ((ft_atol(av[1]) <= 0) || (ft_atol(av[1]) >= INT_MAX))
 		return (1);
-	if (ft_atol(av[2]) <= INT_MAX)
+	if ((ft_atol(av[2]) <= 0) || (ft_atol(av[2]) >= INT_MAX))
 		return (1);
-	if (ft_atol(av[3]) <= INT_MAX)
+	if ((ft_atol(av[3]) <= 0) || (ft_atol(av[3]) >= INT_MAX))
 		return (1);
-	if (ft_atol(av[4]) <= INT_MAX)
+	if ((ft_atol(av[4]) <= 0) || (ft_atol(av[4]) >= INT_MAX))
 		return (1);
-	if (ac == 6 && ft_atol(av[5]) <= INT_MAX)
+	if (ac == 6 && ((ft_atol(av[5]) <= 0) || (ft_atol(av[5]) >= INT_MAX)))
 		return (1);
 	return (0);
 }

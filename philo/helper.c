@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 02:05:08 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/14 23:41:45 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/19 09:17:24 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	ft_atoi(const char *str)
 			signe *= -1;
 		i++;
 	}
+	i = 0;
 	while (ft_isdigit(str[i]) == 1)
 		nbr = nbr * 10 + (str[i++] - 48);
 	return (nbr * signe);
@@ -68,10 +69,10 @@ int	ft_atol(const char *str)
 		if (str[i] == '-')
 			sign = -1;
 		i++;
-	while (ft_isdigit(str[i]))
+	i = 0;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		final = final * 10 + str[i] - '0';
-		i++;
+		final = final * 10 + (str[i++] - 48);
 	}
 	if ((final * sign) < 0)
 		return (-1);

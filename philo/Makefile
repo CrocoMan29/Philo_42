@@ -6,7 +6,7 @@
 #    By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 01:35:03 by yismaail          #+#    #+#              #
-#    Updated: 2023/05/10 01:52:25 by yismaail         ###   ########.fr        #
+#    Updated: 2023/05/19 01:23:58 by yismaail         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,4 +31,4 @@ fclean		: clean
 
 re			: fclean all
 
-.PHONY: all clean fclean re
+.PHONY		: all clean fclean re

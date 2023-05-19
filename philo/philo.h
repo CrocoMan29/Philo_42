@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:01:22 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/16 06:48:11 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/19 08:46:16 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,14 @@ int		input_is_valid(int ac, char **av);
 int		ft_atoi(const char *str);
 int		ft_atol(const char *str);
 int		is_num(char *str);
-int	ft_isdigit(int c);
+int		ft_isdigit(int c);
+
+//*---------------Set Data---------------*//
+int	set_data(t_all *all, int ac, char **av);
+int	check_assign(t_all *all);
+int	assign_control(t_all *all);
+int	assign_philo(t_all *all);
+int	assign_fork(t_all *all);
+int	assign_arg(t_all *all, char **av, int ac);
 
 #endif
