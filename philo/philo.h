@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:01:22 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/21 06:02:35 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/21 11:43:23 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,61 +26,43 @@
 # define RESET "\e[0m"
 
 
-typedef enum s_state
-{
-	EAT,
-	SLEEP,
-	THINK,
-	FORK,
-	DIE,
-	END,
-}	t_state;
+// typedef enum s_state
+// {
+// 	EAT,
+// 	SLEEP,
+// 	THINK,
+// 	FORK,
+// 	DIE,
+// 	END,
+// }	t_state;
 
 typedef struct s_data
 {
 	
 	int				nb_of_philo;
-	unsigned long	time_of_die;
-	unsigned long	time_to_eat;
-	unsigned long	time_to_sleep;
-	unsigned long	start_time;
+	int				time_of_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	long long		start_time;
 	int				nb_of_time_must_eat;
-	int				nb_of_done_of_eat;
+	int				can_finish;
 	pthread_mutex_t	m_print;
-	int				isanyonedead;
-	
+	pthread_mutex_t	*fork;
+	pthread_mutex_t finish;
+	t_philo			*philo;
 }			t_data;
-
-typedef struct s_fork
-{
-	int				id_fork;
-	int				gradedby;
-	pthread_mutex_t	m_fork;
-}					t_fork;
 
 typedef struct s_philo
 {
-	t_data			*data;
-	t_fork			*fork;
-	t_state			state;
-	pthread_t		*id_thread;
 	int				id;
-	int				left_f;
-	int				right_f;
-	unsigned long	last_time_to_eat;
-	int				eat_control;
-	int				end;
-	
+	int				nb_of_meal;
+	t_data			*data;
+	pthread_t		*id_thread;
+	pthread_mutex_t	left_f;
+	pthread_mutex_t	right_f;
+	pthread_mutex_t check_death;
+	long long		last_meal_to_eat;
 }				t_philo;
-
-
-typedef struct s_all
-{
-	t_data		*a_data;
-	t_philo		*a_philo;
-	t_fork		*a_fork;
-	pthread_t	*m_th_id;
-}				t_all;
 
 
 //*---------------Tools---------------*//
@@ -93,10 +75,5 @@ int		ft_isdigit(int c);
 
 //*---------------Set Data---------------*//
 int	set_data(t_all *all, int ac, char **av);
-int	check_assign(t_all *all);
-int	assign_control(t_all *all);
-int	assign_philo(t_all *all);
-int	assign_fork(t_all *all);
-int	assign_arg(t_all *all, char **av, int ac);
 
 #endif

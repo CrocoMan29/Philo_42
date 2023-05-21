@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:00:54 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/19 09:19:44 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/21 11:12:27 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,12 @@ void*	affiche(void)
 
 int	main(int ac, char **av)
 {
-	// pthread_t t1;
-	// int *n1;
-	// if (pthread_create(&t1, NULL, &affiche, NULL) != 0)
-	// 	return (0);
-	// if (pthread_join(t1, (void **)&n1) != 0)
-	// 	return (1);
-	// 	printf ("====> %d\n", *n1);
-	t_all		all;
+	t_data	*data;
+	
+	data = malloc(sizeof(t_data));
 	if (input_is_valid(ac, av))
-	{
-		// printf ("%d\n", ac);
 		return (1);
-	}
-	if (set_data(&all, ac, av))
+	if (set_data(data, ac, av))
 	{
 	printf("======================\n");
 		
