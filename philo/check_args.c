@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 01:14:09 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/19 09:21:56 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/21 06:03:42 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int	assign_philo(t_all *all)
 	while (i < nbr_ph)
 	{
 		memset(&all->a_philo, 0, sizeof(t_philo));
+		printf ("hello\n");
 		all->a_philo[i].data = all->a_data;
-	printf ("hello\n");
 		all->a_philo[i].fork = all->a_fork;
 		all->a_philo[i].id_thread = (pthread_t *)malloc(sizeof(pthread_t));
 		if (!all->a_philo[i].id_thread)
