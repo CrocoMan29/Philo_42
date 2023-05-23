@@ -6,11 +6,21 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 01:14:09 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/21 11:58:53 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:58:32 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philo.h"
+
+long long	get_time(void)
+{
+	struct timeval tv;
+	long long	time_ms;
+	
+	if (gettimeofday(&tv, NULL) == 0)
+		time_ms = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	return (time_ms);
+}
 
 t_philo	*assign_philo(t_data **data)
 {
@@ -26,8 +36,16 @@ t_philo	*assign_philo(t_data **data)
 	while (i < nb_philo)
 	{
 		philo[i].id = i + 1;
-		philo[i].
+		philo[i].data = (*data);
+		philo[i].nb_of_meal = 0;
+		philo[i].last_meal_to_eat = get_time();
+		philo[i].right_f = (*data)->fork[(i + 1) % (*data)->nb_of_philo];
+		philo[i].left_f = (*data)->fork[i];
+		pthread_mutex_init(&philo[i].check_death, NULL);
+		philo[i].data = *data;
+		i++;
 	}
+	return (philo);
 }
 
 pthread_mutex_t		*assign_fork(int nb_of_philo)
@@ -59,7 +77,18 @@ int	set_data(t_data *data, int ac, char **av)
 		data->nb_of_time_must_eat = -1;
 	data->can_finish = 0;
 	data->fork = assign_fork(data->nb_of_philo);
+	if (!data->fork)
+	{
+		free(data->fork);
+		return (1);
+	}
 	data->philo = assign_philo(&data);
+	if (!data->philo)
+	{
+		free(data->philo);
+		return (2);
+	}
+	pthread_mutex_init(&data->finish, NULL);
 }
 
 int	input_is_valid(int ac, char **av)

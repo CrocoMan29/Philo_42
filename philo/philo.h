@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:01:22 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/21 11:43:23 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:55:18 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include<pthread.h>
 #include<limits.h>
 #include<string.h>
+#include <sys/time.h>
 
 #define BLUE "\e[1;36m"
 # define GREEN "\e[0;92m"
@@ -74,6 +75,6 @@ int		is_num(char *str);
 int		ft_isdigit(int c);
 
 //*---------------Set Data---------------*//
-int	set_data(t_all *all, int ac, char **av);
+int	set_data(t_data *data, int ac, char **av);
 
 #endif
