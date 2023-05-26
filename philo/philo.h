@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:01:22 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/23 15:55:18 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:22:19 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,6 @@
 #include<string.h>
 #include <sys/time.h>
 
-#define BLUE "\e[1;36m"
-# define GREEN "\e[0;92m"
-# define RED "\e[0;31m"
-# define RESET "\e[0m"
-
-
-// typedef enum s_state
-// {
-// 	EAT,
-// 	SLEEP,
-// 	THINK,
-// 	FORK,
-// 	DIE,
-// 	END,
-// }	t_state;
-
 typedef struct s_data
 {
 	
@@ -50,7 +34,7 @@ typedef struct s_data
 	pthread_mutex_t	m_print;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t finish;
-	t_philo			*philo;
+	struct s_philo	*philo;
 }			t_data;
 
 typedef struct s_philo
@@ -58,7 +42,7 @@ typedef struct s_philo
 	int				id;
 	int				nb_of_meal;
 	t_data			*data;
-	pthread_t		*id_thread;
+	pthread_t		id_thread;
 	pthread_mutex_t	left_f;
 	pthread_mutex_t	right_f;
 	pthread_mutex_t check_death;
@@ -76,5 +60,8 @@ int		ft_isdigit(int c);
 
 //*---------------Set Data---------------*//
 int	set_data(t_data *data, int ac, char **av);
+pthread_mutex_t		*assign_fork(int nb_of_philo);
+t_philo	*assign_philo(t_data **data);
+long long	get_time(void);
 
 #endif

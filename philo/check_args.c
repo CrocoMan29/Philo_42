@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 01:14:09 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/23 15:58:32 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:49:25 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ long long	get_time(void)
 	struct timeval tv;
 	long long	time_ms;
 	
+	time_ms = 0;
 	if (gettimeofday(&tv, NULL) == 0)
 		time_ms = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	return (time_ms);
@@ -32,7 +33,7 @@ t_philo	*assign_philo(t_data **data)
 	nb_philo = (*data)->nb_of_philo;
 	philo = (t_philo *)malloc(sizeof(t_philo) * nb_philo);
 	if (!philo)
-		retrun (NULL);
+		return (NULL);
 	while (i < nb_philo)
 	{
 		philo[i].id = i + 1;
@@ -89,6 +90,7 @@ int	set_data(t_data *data, int ac, char **av)
 		return (2);
 	}
 	pthread_mutex_init(&data->finish, NULL);
+	return (0);
 }
 
 int	input_is_valid(int ac, char **av)
