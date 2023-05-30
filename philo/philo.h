@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:01:22 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/26 18:22:19 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/05/30 05:46:34 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 typedef struct s_data
 {
-	
 	int				nb_of_philo;
 	int				time_of_die;
 	int				time_to_eat;
