@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 05:01:22 by yismaail          #+#    #+#             */
-/*   Updated: 2023/05/30 05:46:34 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/06/04 02:16:21 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,17 @@ int	set_data(t_data *data, int ac, char **av);
 pthread_mutex_t		*assign_fork(int nb_of_philo);
 t_philo	*assign_philo(t_data **data);
 long long	get_time(void);
+
+//*---------------Simulation---------------*//
+void	begin_simulation(t_data *data);
+void	end_simulation(t_data *data, pthread_t th_monitor);
+void	*monitor(void *arg);
+t_philo	*monitor_loop(t_data *data, int *i);
+void	*routine(void *arg);
+void	pick_fork(t_philo *philo);
+void	ft_eat(t_philo *philo);
+void	ft_sleep(t_philo *philo);
+void	ft_message(t_philo philo, char *str);
+int check_status(t_data *data);
 
 #endif
