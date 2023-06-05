@@ -6,13 +6,13 @@
 #    By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 01:35:03 by yismaail          #+#    #+#              #
-#    Updated: 2023/06/04 05:41:12 by yismaail         ###   ########.fr        #
+#    Updated: 2023/06/05 05:21:06 by yismaail         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	philo
 CC			=	cc
-CFLAGS		=	-Werror -Wextra -Wall -fsanitize=address -g3
+CFLAGS		=	-Werror -Wextra -Wall -fsanitize=thread 
 RM			=	rm -rf
 SRCS		=	main.c check_args.c helper.c routine.c simulation.c
 				

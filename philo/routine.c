@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:45:30 by yismaail          #+#    #+#             */
-/*   Updated: 2023/06/04 05:55:03 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/06/05 05:47:29 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,14 @@ void	ft_eat(t_philo *philo)
 		philo->nb_of_meal++;
 		pthread_mutex_unlock(&philo->check_death);
 	}
-	pthread_mutex_unlock(&philo->left_f);
+	usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_unlock(&philo->right_f);
+	pthread_mutex_unlock(&philo->left_f);
 }
 
 void	pick_fork(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
-	{
-		pthread_mutex_lock(&philo->left_f);
-		if (!check_status(philo->data))
-			ft_message(*philo, "taking a fork");
-		pthread_mutex_lock(&philo->right_f);
-		if (!check_status(philo->data))
-			ft_message(*philo, "taking a fork");
-	}
-	else
+	if (philo->id % 2)
 	{
 		pthread_mutex_lock(&philo->right_f);
 		if (!check_status(philo->data))
@@ -77,6 +69,15 @@ void	pick_fork(t_philo *philo)
 		pthread_mutex_lock((&philo->left_f));
 		if (!check_status(philo->data))
 			ft_message(*philo, "taking a fork");
+		return ;
+	}else
+	{
+	pthread_mutex_lock(&philo->left_f);
+	if (!check_status(philo->data))
+		ft_message(*philo, "taking a fork");
+	pthread_mutex_lock(&philo->right_f);
+	if (!check_status(philo->data))
+		ft_message(*philo, "taking a fork");
 	}
 }
 
@@ -85,8 +86,17 @@ void	*routine(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
+	if (philo->data->nb_of_philo == 1)
+	{
+		pthread_mutex_lock(&philo->left_f);
+		ft_message(*philo, "take a fork");
+		pthread_mutex_unlock(&philo->left_f);
+		return ((void *)philo);
+	}
 	while(!check_status(philo->data))
 	{
+		if (check_status(philo->data))
+			break;
 		pick_fork(philo);
 		ft_eat(philo);
 		if (check_status(philo->data))

@@ -6,7 +6,7 @@
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 10:24:46 by yismaail          #+#    #+#             */
-/*   Updated: 2023/06/04 02:46:50 by yismaail         ###   ########.fr       */
+/*   Updated: 2023/06/05 05:13:31 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_philo	*monitor_loop(t_data *data, int *i)
 	int			nbr_of_meal;
 	int			j;
 
-	j =  -1;
-	while(++j < data->nb_of_philo)
+	j =  0;
+	while(j < data->nb_of_philo)
 	{
 		pthread_mutex_lock(&data->philo[j].check_death);
 		nbr_of_meal = data->philo[j].nb_of_meal;
@@ -35,6 +35,7 @@ t_philo	*monitor_loop(t_data *data, int *i)
 			return (&data->philo[j]);
 		}
 		pthread_mutex_unlock(&data->philo[j].check_death);
+		j++;
 	}
 	return (NULL);
 }
@@ -46,11 +47,13 @@ void	*monitor(void *arg)
 	int		i;
 	
 	data = (t_data *)arg;
+	
 	while (1)
 	{
+		
 		i = 0;
 		philo = monitor_loop(data, &i);
-		if (philo)
+		if (philo != NULL)
 			return (philo);
 		if (i == data->nb_of_philo)
 		{
@@ -69,15 +72,16 @@ void	begin_simulation(t_data *data)
 
 	pthread_mutex_init(&data->m_print, NULL);
 	data->start_time = get_time();
-	i = -1;
-	while (++i < data->nb_of_philo)
+	i = 0;
+	while (i < data->nb_of_philo)
 	{
 		data->philo[i].last_meal_to_eat = get_time();
 		pthread_create(&data->philo[i].id_thread, NULL, &routine, &data->philo[i]);
 		if (i % 2 == 0)
 			usleep(1000);
+		i++;
 	}
-	pthread_create(&th_monitor, NULL, monitor, data);
+	pthread_create(&th_monitor, NULL, &monitor, data);
 	end_simulation(data, th_monitor);
 	// void	*res;
 	// pthread_join(th_monitor, res);
@@ -101,17 +105,21 @@ void	end_simulation(t_data *data, pthread_t th_monitor)
 	void	*res;
 
 	res = NULL;
-	pthread_join(th_monitor, res);
+	pthread_join(th_monitor, &res);
 	if (res)
 		ft_message(*(t_philo *)res, "hi is dead");
-	i = -1;
-	while (++i < data->nb_of_philo)
-		pthread_join(data->philo[i].id_thread, NULL);
 	i = 0;
-	while(++i <= data->nb_of_philo)
+	while (i < data->nb_of_philo)
+	{
+		pthread_join(data->philo[i].id_thread, NULL);
+		i++;
+	}
+	i = 1;
+	while(i <= data->nb_of_philo)
 	{
 		pthread_mutex_destroy(&data->philo[i].check_death);
 		pthread_mutex_destroy(&data->fork[i]);
+		i++;
 	}
 	pthread_mutex_destroy(&data->m_print);
 }
