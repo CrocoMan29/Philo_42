@@ -5,16 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/04 01:35:03 by yismaail          #+#    #+#              #
-#    Updated: 2023/06/05 05:21:06 by yismaail         ###   ########.fr        #
+#    Created: 2023/06/07 06:08:45 by yismaail          #+#    #+#              #
+#    Updated: 2023/06/08 06:10:46 by yismaail         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	philo
 CC			=	cc
-CFLAGS		=	-Werror -Wextra -Wall -fsanitize=thread 
+CFLAGS		=	-Werror -Wextra -Wall
+CFLAGS		+=	-fsanitize=thread -g3 
+# CFLAGS		+=	-fsanitize=address -g3
 RM			=	rm -rf
-SRCS		=	main.c check_args.c helper.c routine.c simulation.c
+SRCS		=	main.c tools.c routine.c
 				
 OBJS		= ${SRCS:.c=.o}
 

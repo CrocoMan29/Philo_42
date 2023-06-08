@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yismaail <yismaail@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 05:01:22 by yismaail          #+#    #+#             */
-/*   Updated: 2023/06/04 02:16:21 by yismaail         ###   ########.fr       */
+/*   Created: 2023/06/07 05:44:30 by yismaail          #+#    #+#             */
+/*   Updated: 2023/06/08 06:13:47 by yismaail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,37 @@
 #include<pthread.h>
 #include<limits.h>
 #include<string.h>
-#include <sys/time.h>
+#include<sys/time.h>
+#include<stdbool.h>
+
+typedef long long	t_time;
+
+struct				s_vars;
+
+typedef struct s_philo
+{
+	int						id;
+	bool					is_done;
+	t_time					last_time_to_eat;
+	pthread_t				thread;
+	struct s_data			*data;
+	pthread_mutex_t			mutex;
+}	t_philo;
 
 typedef struct s_data
 {
 	int				nb_of_philo;
-	int				time_of_die;
+	t_philo			*philo;
+	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	long long		start_time;
-	int				nb_of_time_must_eat;
-	int				can_finish;
+	int				max_eat_count;
+	bool			check_death;
+	bool			stop;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	m_print;
-	pthread_mutex_t	*fork;
-	pthread_mutex_t finish;
-	struct s_philo	*philo;
-}			t_data;
-
-typedef struct s_philo
-{
-	int				id;
-	int				nb_of_meal;
-	t_data			*data;
-	pthread_t		id_thread;
-	pthread_mutex_t	left_f;
-	pthread_mutex_t	right_f;
-	pthread_mutex_t check_death;
-	long long		last_meal_to_eat;
-}				t_philo;
-
+	pthread_mutex_t	mutex;
+}	t_data;
 
 //*---------------Tools---------------*//
 void	ft_exit(void);
@@ -56,23 +58,24 @@ int		ft_atoi(const char *str);
 int		ft_atol(const char *str);
 int		is_num(char *str);
 int		ft_isdigit(int c);
+time_t	get_time(void);
+void	wait_ms(int ms);
+int	ft_modulo(int a, int b);
 
-//*---------------Set Data---------------*//
-int	set_data(t_data *data, int ac, char **av);
-pthread_mutex_t		*assign_fork(int nb_of_philo);
-t_philo	*assign_philo(t_data **data);
-long long	get_time(void);
-
-//*---------------Simulation---------------*//
-void	begin_simulation(t_data *data);
-void	end_simulation(t_data *data, pthread_t th_monitor);
-void	*monitor(void *arg);
-t_philo	*monitor_loop(t_data *data, int *i);
+//*---------------Routine---------------*//
 void	*routine(void *arg);
-void	pick_fork(t_philo *philo);
 void	ft_eat(t_philo *philo);
-void	ft_sleep(t_philo *philo);
-void	ft_message(t_philo philo, char *str);
-int check_status(t_data *data);
-
+void	ft_message(t_philo *philo, bool status, char *str);
+bool	close_to_death(t_philo *philo, bool use_mtx);
+bool	check_stop(t_data *data);
+void	force_stop(t_data *data);
+bool	check_finish(t_data *data);
+void	check_death(t_data *data);
+void	join_thread(t_data *data);
+void	destroy_mutex(t_data *data);
+//*---------------Parse Data---------------*//
+int	parse_data(t_data *data, int ac, char **av);
+int	assign_philo(t_data *data);
+int	assign_mutex(t_data *data);
+int	assign_thread(t_data *data);
 #endif
